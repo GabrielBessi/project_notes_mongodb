@@ -1,0 +1,42 @@
+<a href="/">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    fill="currentColor"
+    class="bi bi-arrow-left-circle-fill"
+    viewBox="0 0 16 16"
+  >
+    <path
+      d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"
+    />
+  </svg>
+</a>
+
+<h2>Editar nota: {{notes.title}}</h2>
+<form action="/notes/update" method="POST">
+  <input type="hidden" name="id" value="{{notes._id}}" />
+  <div class="mb-3">
+    <label for="title" class="form-label">Título</label>
+    <input
+      type="text"
+      class="form-control"
+      id="title"
+      name="title"
+      placeholder="Título da tarefa"
+      value="{{notes.title}}"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="description" class="form-label">Descrição</label>
+    <input
+      type="text"
+      class="form-control"
+      id="description"
+      name="description"
+      placeholder="Descrição de sua tarefa..."
+      value="{{notes.description}}"
+    />
+  </div>
+  <button type="submit" class="btn btn-primary">Criar nota</button>
+</form>

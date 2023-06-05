@@ -20,6 +20,17 @@ router.get("/:id", async function (req, res) {
   res.render("notes/detail", { notes });
 });
 
+router.get("/edit/:id", async function (req, res) {
+  const id = new ObjectId(req.params.id);
+
+  const notes = await db
+    .getDatabase()
+    .db()
+    .collection("notes")
+    .findOne({ _id: id });
+  res.render("notes/edit", { notes });
+});
+
 router.post("/", function (req, res) {
   const data = req.body;
   const title = data.title;
@@ -30,6 +41,22 @@ router.post("/", function (req, res) {
     .collection("notes")
     .insertOne({ title: title, description: description });
 
+  res.redirect(301, "/");
+});
+
+router.post("/update", function (req, res) {
+  const data = req.body;
+  const id = new ObjectId(data.id);
+  const title = data.title;
+  const description = data.description;
+
+  db.getDatabase()
+    .db()
+    .collection("notes")
+    .updateOne(
+      { _id: id },
+      { $set: { title: title, description: description } }
+    );
   res.redirect(301, "/");
 });
 

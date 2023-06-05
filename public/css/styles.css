@@ -43,3 +43,13 @@ footer {
   justify-content: center;
   align-items: center;
 }
+
+@media (max-width: 425px) {
+  #main-container {
+    padding: 30px;
+  }
+
+  #main-container td {
+    height: 70px;
+  }
+}
